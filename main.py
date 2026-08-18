@@ -2,7 +2,7 @@
 from pathlib import Path
 from reconciliation.loader import load_erp_transactions,load_bank_transactions
 from reconciliation.validation import validate_erp_records, validate_bank_records
-
+from reconciliation.duplicate import find_duplicates
 file_location = Path("Data")
 
 erp = load_erp_transactions(file_location)
@@ -17,5 +17,9 @@ print("Invalid ERP:", len(invalid_erp))
 print("Valid Bank:", len(valid_bank))
 print("Invalid Bank:", len(invalid_bank))
 
-print(invalid_erp)
-print(invalid_bank)
+erp_duplicates = find_duplicates(valid_erp)
+bank_duplicates = find_duplicates(valid_bank)
+print("Erp duplicates", len(erp_duplicates))
+print("Bank duplicates", len(bank_duplicates))
+print(erp_duplicates)
+print(bank_duplicates)
