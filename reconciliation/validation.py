@@ -21,7 +21,19 @@ def validate_erp_record(record):
     
     return errors
 
-
+def validate_erp_records(records):
+    valid_records = []
+    invalid_records = []
+    for record in records:
+        validation = validate_erp_record(record)
+        if not validation:
+            valid_records.append(record)
+        else:
+            invalid_records.append({
+               "record": record,
+               "errors": validation 
+            })
+    return valid_records,invalid_records
 
 
 
@@ -41,3 +53,16 @@ def validate_bank_record(record):
     return errors
 
 
+def validate_bank_records(records):
+    valid_records = []
+    invalid_records = []
+    for record in records:
+        validation = validate_bank_record(record)
+        if not validation:
+            valid_records.append(record)
+        else:
+            invalid_records.append({
+                "record": record,
+                "errors": validation
+                })
+    return valid_records,invalid_records
