@@ -11,4 +11,12 @@ def find_duplicates(records):
                 duplicates.append(seen_records[data["transaction_id"]])
             duplicates.append(data)
 
-    return duplicates
+    return duplicates, duplicate_ids
+
+def remove_duplicates(records, duplicate_ids):
+    result = []
+
+    for record in records:
+        if record["transaction_id"] not in duplicate_ids:
+            result.append(record)
+    return result
