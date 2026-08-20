@@ -46,27 +46,4 @@ def find_bank_only_records(bank_records, erp_lookup, erp_duplicate_ids):
             })
     return results
 
-def build_duplicate_results(records, source):
-    results = []
-    for record in records:
-        results.append({
-            "transaction_id": record["transaction_id"],
-             "status" : "DUPLICATE",
-             "source" : source,
-             "record" : record
-        })
-    return results
-
-
-def build_invalid_results(records, source):
-    results = []
-    for record in records:
-        inv_record = record["record"]
-        results.append({
-            "Transaction_id": inv_record["transaction_id"],
-             "status" : "INVALID",
-             "source" : source,
-             "record" : record["record"],
-             "errors" : record["errors"]
-        })
-    return results    
+ 

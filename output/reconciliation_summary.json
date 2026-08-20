@@ -1,0 +1,14 @@
+{
+    "total_erp_transactions": 12,
+    "total_bank_transactions": 12,
+    "matched": 3,
+    "erp_only": 1,
+    "bank_only": 1,
+    "amount_mismatches": 1,
+    "currency_mismatches": 1,
+    "duplicates": 4,
+    "invalid_records": 8,
+    "total_erp_amount": 2030.5,
+    "reconciled_amount": 655.5,
+    "unmatched_erp_amount": 715.0
+}

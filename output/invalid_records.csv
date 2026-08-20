@@ -1,0 +1,9 @@
+transaction_id,source,amount,currency,errors
+,ERP,220.0,OMR,transaction_id is required
+TXN1010,ERP,INVALID,OMR,amount must be numeric
+TXN1011,ERP,75.0,OMR,customer is required
+TXN1012,ERP,130.0,OMR,Unknown Status
+TXN1013,BANK,80.0,OMR,bank_reference is required
+,BANK,60.0,OMR,transaction_id is required
+TXN1014,BANK,BAD_AMOUNT,OMR,amount must be numeric
+TXN1015,BANK,100.0,EUR,Unsupported Currency

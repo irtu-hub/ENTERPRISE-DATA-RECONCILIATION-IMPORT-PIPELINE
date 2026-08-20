@@ -3,10 +3,12 @@ from pathlib import Path
 from reconciliation.loader import load_erp_transactions,load_bank_transactions
 from reconciliation.validation import validate_erp_records, validate_bank_records
 from reconciliation.duplicate import find_duplicates, remove_duplicates
-from reconciliation.matcher import build_transaction_lookup, reconcile_erp_records, find_bank_only_records, build_duplicate_results,build_invalid_results
-from reconciliation.reporting import generate_summary
+from reconciliation.matcher import build_transaction_lookup, reconcile_erp_records, find_bank_only_records
+from reconciliation.reporting import generate_summary, write_reconciliation_results,write_invalid_records,write_summary,build_duplicate_results,build_invalid_results
 
 file_location = Path("Data")
+output_folder = Path("output")
+output_folder.mkdir(parents=True, exist_ok=True)
 
 erp = load_erp_transactions(file_location)
 bank = load_bank_transactions(file_location)
@@ -40,5 +42,22 @@ duplicate_results = erp_duplicate_results + bank_duplicate_results
 invalid_results = erp_invalid_results + bank_invalid_results
 
 summary = generate_summary(erp, bank, reconciliation_results, duplicate_results, invalid_results)
+all_reconciliation_results = reconciliation_results + duplicate_results
 
-print(summary)
+
+print("Summary:", summary)
+write_reconciliation_results(
+    all_reconciliation_results,
+    output_folder
+)
+
+write_invalid_records(
+    invalid_results,
+    output_folder
+)
+
+write_summary(
+    summary,
+    output_folder
+)
+
